@@ -3,7 +3,6 @@ const { check, validationResult } = require('express-validator');
 const { json } = require('body-parser');
 var expressJwt = require('express-jwt');
 var jwt = require('jsonwebtoken');
-const user = require('../models/user');
 require('dotenv').config()
 
 exports.login = (req,res)=>{
