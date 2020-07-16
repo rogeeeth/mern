@@ -76,6 +76,7 @@ exports.pushOrderInPurchaseList = (req,res,next)=>{
                     error:"Unable to save purchase list"
                 });
             }
+            res.json(purchases);
         })
     next();
 }

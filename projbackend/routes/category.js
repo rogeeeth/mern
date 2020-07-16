@@ -3,7 +3,7 @@ const router = express.Router();
 
 const {getCategoryById,createCategory,getCategory, getAllCategories,updateCategory,deleteCategory} = require('../controllers/category');
 const {getUserById} = require('../controllers/user');
-const {isAdmin,isLoggedIn,isAuthorized} = require('../controllers/auth');
+const {isLoggedIn,isAuthorized,isAdmin} = require('../controllers/auth');
 
 
 router.param('userId',getUserById);
