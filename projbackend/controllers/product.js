@@ -8,18 +8,19 @@ const product = require('../models/product');
 
 exports.getProductById = (req,res,next,id) =>{
 
-    Product.find(id)
+    Product.findById(id)
     .populate('category')
     .exec((err,product)=>{
-        if(err || !product){
+        if(err){
             return res.status(400).json({
                 error:"Product not found"
             });
         }
         req.product = product;
+        next();
     });
 
-    next();
+   
 };
 
 exports.createProduct = (req,res)=>{
@@ -58,7 +59,7 @@ exports.createProduct = (req,res)=>{
 };
 
 exports.getProduct = (req,res)=>{
-    req.product.photo = undefined;
+    req.product[0].photo = undefined;
     return res.json(req.product);
 };
 
@@ -66,9 +67,10 @@ exports.getFile = (req,res,next)=>{
     if(req.product.photo.data){
         res.set("Content-Type",req.product.photo.contentType);
         return res.send(req.product.photo.data);
+        next();
     }
 
-    next();
+    
 };
 
 exports.deleteProduct = (req,res)=>{
@@ -164,8 +166,9 @@ exports.updateInventory = (req,res,next) =>{
         res.json({
             message: "Operation Successfull"
         })
+        next();
     });
-    next();
+    
 };
 
 exports.getAllUniqueCategories = (req,res)=>{
