@@ -5,16 +5,16 @@ const {getProductById,createProduct,getProduct,getFile,deleteProduct,updateProdu
 const {getUserById} = require('../controllers/user');
 const {isLoggedIn,isAuthorized,isAdmin} = require('../controllers/auth');
 
+//Params
 router.param('userId',getUserById);
 router.param('productId',getProductById);
 
-router.post('/product/create/:userId',isLoggedIn,isAuthorized,isAdmin,createProduct);
-router.delete('/product/:productId/:userId',isLoggedIn,isAuthorized,isAdmin,deleteProduct);
-router.put('/product/:productId/:userId',isLoggedIn,isAuthorized,isAdmin,updateProduct);
 router.get('/product/:productId',getProduct);
 router.get('/products',getAllProducts);
-//router.get("/product/photo/:productId",getFile);
-
 router.get("/products/categories",getAllUniqueCategories);
+//router.get("/product/photo/:productId",getFile);
+router.post('/product/create/:userId',isLoggedIn,isAuthorized,isAdmin,createProduct);
+router.put('/product/:productId/:userId',isLoggedIn,isAuthorized,isAdmin,updateProduct);
+router.delete('/product/:productId/:userId',isLoggedIn,isAuthorized,isAdmin,deleteProduct);
 
 module.exports = router;

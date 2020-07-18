@@ -7,14 +7,13 @@ const {updateInventory} = require('../controllers/product');
 
 const {getOrderById,createOrder,getOrder,getAllOrders,updateOrderStatus,getOrderStatus} = require('../controllers/order');
 
+//Params
 router.param('orderId',getOrderById);
 router.param('userId',getUserById);
 
-router.post('/order/create/:userId',isLoggedIn,isAuthorized, pushOrderInPurchaseList, updateInventory,createOrder);
-
-
 router.get('orders/all/:userId',isLoggedIn,isAuthorized,isAdmin,getAllOrders);
 router.get('order/:orderId/:userId',isLoggedIn,isAuthorized,getOrder);
+router.post('/order/create/:userId',isLoggedIn,isAuthorized, pushOrderInPurchaseList, updateInventory,createOrder);
 router.get('/order/status/:userId',isLoggedIn,isAuthorized,isAdmin,getOrderStatus);
 router.put('order/:orderId/status/:userId', isLoggedIn,isAuthorized,isAdmin, updateOrderStatus);
 

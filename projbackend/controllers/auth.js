@@ -1,6 +1,5 @@
 const User = require('../models/user');
 const { check, validationResult } = require('express-validator');
-const { json } = require('body-parser');
 var expressJwt = require('express-jwt');
 var jwt = require('jsonwebtoken');
 require('dotenv').config()
@@ -81,14 +80,16 @@ exports.isAuthorized= (req,res,next)=>{
         return res.status(403).json({
             error:"ACCESS DENIED"
         });
+        next();
     }
-    next();
+    
 };
 exports.isAdmin= (req,res,next)=>{
     if(req.profile.role ===0){
         return res.status(403).json({
             error:"NOT AN ADMIN, ACCESS DENIED"
         });
+        next();
     }
-    next();
+    
 };

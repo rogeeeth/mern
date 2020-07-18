@@ -77,8 +77,9 @@ exports.pushOrderInPurchaseList = (req,res,next)=>{
                 });
             }
             res.json(purchases);
+            next();
         })
-    next();
+   
 }
 
 
