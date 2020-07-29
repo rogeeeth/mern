@@ -1,14 +1,24 @@
-import React from 'react';
-import '../styles.css';
-import Base from './Base';
+import React from "react";
+import "../styles.css";
+import { API } from "../backend";
+import Base from "./Base";
 
-console.log("API: ",process.env.REACT_APP_BACKEND);
-const Home= ()=>{
-    return(
-        <Base>
-            <h1 className="text-white">Hello World</h1>
-        </Base>
-    );
+export default function Home() {
+  console.log("API IS", API);
+
+  return (
+    <Base title="Home Page" description="Welcome to the Tshirt Store">
+      <div className="row">
+        <div className="col-4">
+          <button className="btn btn-success">TEST</button>
+        </div>
+        <div className="col-4">
+          <button className="btn btn-success">TEST</button>
+        </div>
+        <div className="col-4">
+          <button className="btn btn-success">TEST</button>
+        </div>
+      </div>
+    </Base>
+  );
 }
-
-export default Home;
